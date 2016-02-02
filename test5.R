@@ -8,7 +8,8 @@ for(num in 1:length(fname)){
   cat(num,"-",fname[num],"-",sep="")
   setwd(path)
   fn <- paste(path,"/",fname[num],sep="")
-  y <- read.xlsx2(fn,1,startRow = 5,colIndex=c(1:2),
+  y <- read.xlsx2(fn,1,startRow = 5,
+                  colIndex=c(1:2),
                   header =F)
   # 去掉最后一行
   x <- y[y$X2 != "",]
@@ -33,7 +34,7 @@ for(num in 1:length(fname)){
   
   
   dt <-  read.xlsx(fn,1,startRow = 5,
-                    endRow = dim(data0)[1]+4,
+                   endRow = dim(data0)[1]+4,
                    colIndex = c(7,8),
                    as.data.frame = T,
                    encoding = "UTF-8",
@@ -45,7 +46,9 @@ for(num in 1:length(fname)){
   for(i in  1:dim(dt)[1]){
     if (dt$X7[i] == "借"){
       dt1[i+5,1]  <- dt$X8[i]
-    }else{ if(dt$X7[i] == "贷"){ dt1[i+5,2] <- dt$X8[i]} }
+    }else{ 
+      if(dt$X7[i] == "贷"){ 
+        dt1[i+5,2] <- dt$X8[i]} }
   }
   
   # 中间增加四列  并且按列合并数据 
