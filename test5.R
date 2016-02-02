@@ -13,7 +13,7 @@ for(num in 1:length(fname)){
                   header =F)
   # 去掉最后一行
   x <- y[y$X2 != "",]
-  # 修改科目代码##
+  # 修改科目代码
   x.str <- strsplit(as.character(x$X1),"")
   x.str.new <- data.frame(Xi=matrix(NA,length(x.str),1))
   for(i in 1:length(x.str)){
